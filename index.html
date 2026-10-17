@@ -15,6 +15,7 @@ header{background:#1b3329;color:#fff;padding:18px;text-align:center;}
 .nav-btn{border:1px solid #ddd;background:#f7f7f7;padding:8px 14px;border-radius:20px;text-decoration:none;color:#333;font-size:13px;font-weight:700;display:inline-block;}
 .nav-btn.accent{background:#1b3329;color:#fff;border-color:#1b3329;}
 .nav-btn.voice{background:#fff8e1;border-color:var(--accent);}
+.nav-btn.admin{background:#e3f2fd;border-color:#2196f3;color:#0d47a1;}
 .container{max-width:900px;margin:0 auto;padding:20px;}
 .page-view{display:none;} .page-view.active{display:block;}
 .agreement-banner{background:#fff8e1;border:2px solid var(--accent);border-radius:10px;padding:14px;margin-bottom:18px;}
@@ -35,10 +36,11 @@ header{background:#1b3329;color:#fff;padding:18px;text-align:center;}
 .post-form-card{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:16px;margin-bottom:16px;}
 .admin-card{background:#fff3f3;border:2px solid #c44;border-radius:12px;padding:16px;margin-bottom:16px;display:none;}
 .admin-card.open{display:block;}
+.queue-card{background:#e3f2fd;border:2px solid #2196f3;border-radius:12px;padding:14px;margin-bottom:12px;}
 footer{text-align:center;padding:20px;color:#888;font-size:12px;}
 </style>
 <script>
-function switchPage(id){var h=document.getElementById('home-view');var s=document.getElementById('square-view');if(!h||!s)return;if(id==='square'){h.classList.remove('active');s.classList.add('active');}else{h.classList.add('active');s.classList.remove('active');}window.scrollTo(0,0);}
+function switchPage(id){var h=document.getElementById('home-view');var s=document.getElementById('square-view');var a=document.getElementById('admin-view');if(!h||!s)return;h.classList.remove('active');s.classList.remove('active');if(a) a.classList.remove('active');if(id==='square'){s.classList.add('active');}else if(id==='admin'){if(a) a.classList.add('active');}else{h.classList.add('active');}window.scrollTo(0,0);}
 function toggleNotice(el){el.classList.toggle('open');}
 function toggleAdminForm(){ var f=document.getElementById('noticeAdminForm'); if(f) f.classList.toggle('open'); }
 function esc(s){return (s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
@@ -54,24 +56,27 @@ function esc(s){return (s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>
 <a href="https://sites.google.com/view/yamatechoasiya-city/kyotei?authuser=0" class="nav-btn" target="_blank">🏛 まちづくり協定</a>
 <a href="https://sites.google.com/view/yamatechoasiya-city/public?authuser=0" class="nav-btn" target="_blank">🏢 公的機関</a>
 <a href="#" class="nav-btn accent" onclick="switchPage('square');return false;">💬 みんなの広場</a>
+<a href="#" class="nav-btn admin" onclick="switchPage('admin');return false;">⚙️ 管理者</a>
 </div></div>
 <div class="container">
 <div id="home-view" class="page-view active">
-<div class="agreement-banner"><h4>私たちの活動の土台：山手町「街づくり協定」</h4><p>山手町の美しい自然環境、良好な住環境、そして安全で安心な暮らしを守るため、住民全員で共有している大切なルールと指針です。</p></div>
-
+<div class="agreement-banner"><h4>私たちの活動の土台：山手町「街づくり協定」</h4><p>山手町の美しい自然環境、良好な住環境、そして安全で安心な暮らしを守るため、住民全員で共有している大切なルールと指針です。</p>
+<div style="margin-top:10px;padding:8px;background:#fff;border-radius:6px;font-size:12px;border:1px dashed var(--accent);">
+<b>🗓️ 新機能：カレンダー連携で自動投稿が可能になりました！</b><br>
+Googleカレンダーに「[通知] 夏祭り準備会やります（20字）」と書くと、AIが100字に膨らませて、承認後に自動で「最新のお知らせ」や「みんなの広場」に掲載されます。管理者は⚙️管理者ページで承認。
+</div>
+</div>
 <div class="pillars-grid">
 <div class="pillar-card"><div><h3>♡ 防犯パトロール</h3><p>夜間の安全パトロールや通学路の見守りなど、日々の安心を守る活動状況を発信しています。</p></div><a href="https://sites.google.com/view/yamatechoasiya-city/%E9%98%B2%E7%8A%AF%E3%83%91%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB?authuser=0" class="btn btn-secondary" target="_blank">詳細を見る</a></div>
 <div class="pillar-card"><div><h3>✨ メンバー・加入募集</h3><p>新しく転居されてこられた方、地域活動に参加したい方をいつでも温かく歓迎いたします。</p></div><a href="https://sites.google.com/view/yamatechoasiya-city/recruit?authuser=0" class="btn btn-secondary" target="_blank">加入のご案内</a></div>
 <div class="pillar-card" style="border-top-color:var(--accent);"><div><h3>💬 みんなの広場</h3><p>スマホから簡単・匿名で意見や写真を投稿。AIが綺麗に整理して自動でボードに格納します。</p></div><button class="btn" onclick="switchPage('square')">広場を開く ➔</button></div>
 </div>
-
 <section>
 <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
 <h2 class="section-title" style="margin-bottom:0;border:none;">📢 最新のお知らせ（タイトルだけ表示、クリックで全文）</h2>
 <button id="adminNoticeBtn" onclick="toggleAdminForm()" style="display:inline-block;padding:6px 12px;border-radius:20px;border:1px solid #c44;background:#fff;color:#c44;font-size:12px;font-weight:800;cursor:pointer;">＋ お知らせを追加（誰でも見える・PW必須）</button>
 </div>
 <p style="font-size:11px;color:#666;margin:6px 0;">誰でも投稿欄は見えます。書き込みにはパスワード（yamate2026）が必要です。タイトルをクリックすると全文が開きます。</p>
-
 <div id="noticeAdminForm" class="admin-card">
 <h4 style="color:#c44;margin-bottom:8px;">📝 お知らせを投稿</h4>
 <p style="font-size:11px;color:#666;margin-bottom:8px;">シート名「お知らせ」 A:日付 B:内容 C:表示 D:登録日時 / パスワード：yamate2026</p>
@@ -84,14 +89,12 @@ function esc(s){return (s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>
 <div id="noticeAdminStatus" style="font-size:12px;color:#2f5d34;min-height:18px;margin-top:6px;"></div>
 </div>
 </div>
-
 <div id="noticeFullList"></div>
 </section>
 </div>
-
 <div id="square-view" class="page-view">
 <div class="post-form-card">
-<h3 style="font-size:15px;margin-bottom:10px;">✍️ 投稿フォーム（みんなの広場）</h3>
+<h3 style="font-size:15px;margin-bottom:10px;">✍ 投稿フォーム（みんなの広場）</h3>
 <div style="display:grid;gap:10px;">
 <div><label style="font-size:12px;font-weight:800;">お名前（匿名可）</label><input type="text" id="postAuthor" placeholder="匿名可" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:8px;"></div>
 <div><label style="font-size:12px;font-weight:800;">写真（任意）</label><input type="file" id="postImage" accept="image/*" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:8px;"><div id="imagePreview" style="margin-top:8px;"></div></div>
@@ -112,10 +115,29 @@ function esc(s){return (s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>
 <div id="postList"></div><div id="pagination" style="margin:12px 0;"></div>
 <div style="text-align:center;margin-top:16px"><button class="btn btn-secondary" onclick="switchPage('home')">⬅ ホームに戻る</button></div>
 </div>
+<!-- 管理者ページ：カレンダー連携承認 -->
+<div id="admin-view" class="page-view">
+<h2 class="section-title">⚙️ 管理者：カレンダー連携 承認待ち</h2>
+<div style="background:#fff3cd;padding:12px;border-radius:8px;font-size:12px;margin-bottom:12px;border:1px solid #e8a33d;">
+<b>使い方：Googleカレンダー → AI → 自動投稿</b><br>
+1. Googleカレンダーに「<b>[通知] 11/10 夏祭り準備会やります</b>」と20字で登録（通知したい日=カレンダーの日付）<br>
+2. 説明欄に「イベント日:2026-11-10」「投稿先:お知らせ or 広場 or 両方」と書く<br>
+3. 毎朝7時にGASが自動でAI100字化 → ここに「承認待ち」として表示<br>
+4. 内容を確認して承認ボタンを押す → ホームページに自動掲載（最新のお知らせ / みんなの広場）<br>
+5. 手動で今すぐチェックしたい場合は「📅 今すぐカレンダーをチェック」ボタン
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+<button onclick="loadQueue()" style="padding:8px 14px;background:#2196f3;color:#fff;border:none;border-radius:8px;font-weight:800;">🔄 承認待ちを更新</button>
+<button onclick="checkCalendarNow()" style="padding:8px 14px;background:#4caf50;color:#fff;border:none;border-radius:8px;font-weight:800;">📅 今すぐカレンダーをチェック</button>
+</div>
+<div id="queueList"></div>
+<div id="queueStatus" style="font-size:12px;color:#2f5d34;margin-top:10px;min-height:20px;"></div>
+<div style="text-align:center;margin-top:16px"><button class="btn btn-secondary" onclick="switchPage('home')">⬅ ホームに戻る</button></div>
+</div>
 </div>
 <footer>&copy; 芦屋市山手町町内会</footer>
 <script>
-const GAS_URL = "https://script.google.com/macros/s/AKfycbySsZlA2IKFhv8O1TYoMbmFf0BGm87-2bQfG8UprB7etUcytFvppl6grCZMgpueKyDG-w/exec";
+const GAS_URL = "https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec";
 const ITEMS_PER_PAGE=20;
 const NOTICE_DATA=[
 {year:"2026",date:"2026-06-06",short:"6月 山手緑地清掃活動のお知らせ",content:"6月 山手緑地清掃活動を下記の通り実施します。\n日時:6月6日(土)9:00-9:30\n集合:山手緑地公園入口\n持ち物:軍手はこちらで用意"},
@@ -138,7 +160,6 @@ const MOCK_POSTS=[
 {timestamp:"2025-08-04T06:30:00", author:"子ども会", summary:"2025-8月ラジオ体操 8/4〜8", category:"イベント", imageUrl:"https://picsum.photos/seed/radio/600/400", description:"5日間、ラジオ体操を山手小学校グラウンドで開催。最終日は7人の皆勤賞。"}
 ];
 let allPosts=[...MOCK_POSTS];let currentFilter="すべて";let currentPage=1;let imageBase64="";
-
 function renderNoticesYearly(data){
   const target=document.getElementById('noticeFullList');
   if(!target) return;
@@ -153,7 +174,6 @@ function renderNoticesYearly(data){
   });
   target.innerHTML=html||"<p>お知らせがありません</p>";
 }
-
 function addNoticeFromPhone(){
   const dateEl=document.getElementById('noticeDate');
   const shortEl=document.getElementById('noticeShort');
@@ -167,8 +187,7 @@ function addNoticeFromPhone(){
   if(!short && !content){ alert("タイトルか本文を入力してください"); return; }
   if(!password){ alert("パスワードを入力してください"); if(statusEl) statusEl.textContent="❌ パスワードが必要です（yamate2026）"; return; }
   const fullContent=short + (content ? "\n" + content : "");
-  if(GAS_URL.includes('AKfycby...')){
-    // ローカル保存でも表示確認できるように
+  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
     const newNotice={year:date.slice(0,4), date:date, short:short||content.slice(0,20), content:fullContent};
     NOTICE_DATA.unshift(newNotice);
     renderNoticesYearly(NOTICE_DATA);
@@ -194,9 +213,7 @@ function addNoticeFromPhone(){
     }
   }).catch(e=>{ statusEl.textContent="❌ 通信エラー: "+e.message; });
 }
-
 function getFiltered(){ let f=allPosts; if(currentFilter!=="すべて") f=allPosts.filter(p=>(p.category||"").includes(currentFilter)); f=[...f].sort((a,b)=> new Date(b.timestamp)-new Date(a.timestamp)); return f; }
-
 function renderPosts(){
   const list=document.getElementById('postList');
   const pag=document.getElementById('pagination');
@@ -227,9 +244,12 @@ function renderPosts(){
 }
 function goPage(p){ currentPage=p; renderPosts(); window.scrollTo({top:document.getElementById('postList').offsetTop-100, behavior:'smooth'}); }
 function filterPosts(cat,el){ currentFilter=cat; currentPage=1; document.querySelectorAll('#filterTabs .tab').forEach(t=>t.classList.remove('active')); if(el) el.classList.add('active'); renderPosts(); }
-
 async function loadFromGAS(){
-  if(GAS_URL.includes('AKfycby...')){ renderNoticesYearly(NOTICE_DATA); renderPosts(); return; }
+  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
+    renderNoticesYearly(NOTICE_DATA);
+    renderPosts();
+    return;
+  }
   try{
     const res=await fetch(GAS_URL+"?action=list");
     const json=await res.json();
@@ -246,19 +266,18 @@ async function loadFromGAS(){
       renderNoticesYearly(NOTICE_DATA);
     }
     if(json.data && json.data.length>0){
-      allPosts=[...json.data.map(r=>({timestamp:r.timestamp, author:r.author, summary:r.summary||r.comment.slice(0,20), category:r.category||r.location||'その他', imageUrl:r.imageUrl, description:r.comment})), ...MOCK_POSTS];
+      allPosts=[...json.data.map(r=>({timestamp:r.timestamp, author:r.author, summary:r.summary||r.comment.slice(0,20), category:r.category||r.location||'その他', imageUrl:r.imageUrl||'https://picsum.photos/seed/'+Date.now()+'/600/400', description:r.comment})), ...MOCK_POSTS];
     }
     renderPosts();
   }catch(e){ console.log(e); renderNoticesYearly(NOTICE_DATA); renderPosts(); }
 }
-
 async function submitPost(){
   const author=document.getElementById('postAuthor').value.trim()||"匿名";
   const comment=document.getElementById('postComment').value.trim();
   const category=document.getElementById('postCategory').value||"すべて";
   const status=document.getElementById('postStatus');
   if(!comment && !imageBase64){ alert("コメントか画像を入れてください"); return; }
-  if(GAS_URL.includes('AKfycby...')){
+  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
     status.textContent="GAS_URL未設定のためローカルに保存します";
     allPosts.unshift({timestamp:new Date().toISOString(), author:author, summary:comment.slice(0,20), category:category==="すべて"?"その他":category, imageUrl: imageBase64 ? "data:image/jpeg;base64,"+imageBase64 : "https://picsum.photos/seed/"+Date.now()+"/600/400", description:comment});
     renderPosts();
@@ -266,12 +285,91 @@ async function submitPost(){
   }
   status.textContent="送信中...";
   try{
-    const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({author:author, comment:comment, location:category, imageBase64:imageBase64||"", mimeType:"image/jpeg"})});
+    const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"submit", title:comment.slice(0,30), summary:comment.slice(0,100), content:comment, author:author})});
     const json=await res.json();
     if(json.status==="success"){ status.textContent="✅ 投稿成功！"; loadFromGAS(); }else{ status.textContent="エラー: "+json.message; }
   }catch(e){ status.textContent="通信エラー: "+e.message; }
 }
-
+// ========== 管理者：カレンダー連携承認 ==========
+async function loadQueue(){
+  const list=document.getElementById('queueList');
+  const status=document.getElementById('queueStatus');
+  if(!list) return;
+  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
+    list.innerHTML="<p style='font-size:12px;color:#888;'>GAS_URLを設定すると、ここに承認待ちが表示されます。<br>デモ：</p><div class='queue-card'><b>元文:</b> 11/10 夏祭り準備会やります<br><b>AI生成:</b> 11月10日開催の夏祭りに向けた準備会を自治会館で開催します。屋台や飾り付けの分担を決めますので、皆様のご参加をお待ちしております。</div>";
+    return;
+  }
+  status.textContent="読み込み中...";
+  try{
+    const res=await fetch(GAS_URL+"?action=getQueue");
+    const json=await res.json();
+    const queues = json.queues || json.notices || [];
+    const pending = queues.filter(q=>!q.status || q.status==='承認待ち');
+    if(pending.length===0){
+      list.innerHTML="<p>承認待ちはありません。Googleカレンダーに [通知] を含むイベントを登録し、「📅 今すぐカレンダーをチェック」を押してください。</p>";
+      status.textContent="✅ 更新完了：承認待ち0件";
+      return;
+    }
+    list.innerHTML = pending.map(q=>`
+      <div class="queue-card">
+        <div style="font-size:11px;color:#666;">ID: ${esc(q.id||'')} | イベント日: ${esc(q.eventDate||'')} | 投稿先: ${esc(q.target||'お知らせ')} | 通知日: ${esc(q.notifyDate||'')}</div>
+        <div style="margin:8px 0;"><b>元文（20字）:</b> ${esc(q.original||'')}</div>
+        <div style="margin:8px 0;background:#fff;padding:10px;border-radius:8px;border:1px solid #ddd;"><b>AI生成（100字）:</b><br>${esc(q.aiText||'')}</div>
+        <div style="display:grid;gap:6px;margin-top:10px;">
+          <input type="text" id="title-${q.id}" placeholder="タイトルを編集（任意）" value="${esc(q.original||'')}" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+          <textarea id="body-${q.id}" rows="3" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">${esc(q.aiText||'')}</textarea>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+          <button onclick="approveQueue('${q.id}','お知らせ')" style="flex:1;min-width:120px;padding:10px;background:#2f5d34;color:#fff;border:none;border-radius:8px;font-weight:800;cursor:pointer;">✅ お知らせに承認</button>
+          <button onclick="approveQueue('${q.id}','広場')" style="flex:1;min-width:120px;padding:10px;background:#e8a33d;color:#000;border:none;border-radius:8px;font-weight:800;cursor:pointer;">💬 広場に承認</button>
+          <button onclick="approveQueue('${q.id}','both')" style="flex:1;min-width:120px;padding:10px;background:#2196f3;color:#fff;border:none;border-radius:8px;font-weight:800;cursor:pointer;">両方に承認</button>
+        </div>
+      </div>
+    `).join("");
+    status.textContent=`✅ ${pending.length}件の承認待ち`;
+  }catch(e){
+    status.textContent="❌ エラー: "+e.message;
+    list.innerHTML="<p>読み込みエラー。GASのデプロイを確認してください。</p>";
+  }
+}
+async function approveQueue(queueId, target){
+  const titleEl=document.getElementById('title-'+queueId);
+  const bodyEl=document.getElementById('body-'+queueId);
+  const title=titleEl ? titleEl.value : '';
+  const body=bodyEl ? bodyEl.value : '';
+  const password=prompt("管理者パスワードを入力 (yamate2026):");
+  if(!password) return;
+  const status=document.getElementById('queueStatus');
+  status.textContent="承認中...";
+  try{
+    const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"approveNotice", queueId:queueId, target:target, customTitle:title, customBody:body, password:password})});
+    const json=await res.json();
+    if(json.status==="success"){
+      status.textContent="✅ "+json.message+" - ページを更新します";
+      setTimeout(()=>{ loadQueue(); loadFromGAS(); }, 1000);
+    }else{
+      status.textContent="❌ "+json.message;
+    }
+  }catch(e){
+    status.textContent="❌ 通信エラー: "+e.message;
+  }
+}
+async function checkCalendarNow(){
+  const status=document.getElementById('queueStatus');
+  status.textContent="📅 カレンダーをチェック中...";
+  try{
+    const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"calendarCheck"})});
+    const json=await res.json();
+    if(json.status==="success"){
+      status.textContent=`✅ チェック完了: ${json.result?.created||0}件新規作成（全${json.result?.checked||0}件中）`;
+      loadQueue();
+    }else{
+      status.textContent="❌ "+json.message;
+    }
+  }catch(e){
+    status.textContent="❌ エラー: "+e.message;
+  }
+}
 document.addEventListener("DOMContentLoaded",()=>{
   loadFromGAS();
   const imgEl=document.getElementById('postImage');
