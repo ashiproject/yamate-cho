@@ -187,7 +187,7 @@ function addNoticeFromPhone(){
   if(!short && !content){ alert("タイトルか本文を入力してください"); return; }
   if(!password){ alert("パスワードを入力してください"); if(statusEl) statusEl.textContent="❌ パスワードが必要です（yamate2026）"; return; }
   const fullContent=short + (content ? "\n" + content : "");
-  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
+  if(GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec') || GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec')){
     const newNotice={year:date.slice(0,4), date:date, short:short||content.slice(0,20), content:fullContent};
     NOTICE_DATA.unshift(newNotice);
     renderNoticesYearly(NOTICE_DATA);
@@ -245,7 +245,7 @@ function renderPosts(){
 function goPage(p){ currentPage=p; renderPosts(); window.scrollTo({top:document.getElementById('postList').offsetTop-100, behavior:'smooth'}); }
 function filterPosts(cat,el){ currentFilter=cat; currentPage=1; document.querySelectorAll('#filterTabs .tab').forEach(t=>t.classList.remove('active')); if(el) el.classList.add('active'); renderPosts(); }
 async function loadFromGAS(){
-  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
+  if(GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec') || GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec')){
     renderNoticesYearly(NOTICE_DATA);
     renderPosts();
     return;
@@ -277,7 +277,7 @@ async function submitPost(){
   const category=document.getElementById('postCategory').value||"すべて";
   const status=document.getElementById('postStatus');
   if(!comment && !imageBase64){ alert("コメントか画像を入れてください"); return; }
-  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
+  if(GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec') || GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec')){
     status.textContent="GAS_URL未設定のためローカルに保存します";
     allPosts.unshift({timestamp:new Date().toISOString(), author:author, summary:comment.slice(0,20), category:category==="すべて"?"その他":category, imageUrl: imageBase64 ? "data:image/jpeg;base64,"+imageBase64 : "https://picsum.photos/seed/"+Date.now()+"/600/400", description:comment});
     renderPosts();
@@ -295,7 +295,7 @@ async function loadQueue(){
   const list=document.getElementById('queueList');
   const status=document.getElementById('queueStatus');
   if(!list) return;
-  if(GAS_URL.includes('AKfycby...') || GAS_URL.includes('あなたのGAS_ID')){
+  if(GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec') || GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec')){
     list.innerHTML="<p style='font-size:12px;color:#888;'>GAS_URLを設定すると、ここに承認待ちが表示されます。<br>デモ：</p><div class='queue-card'><b>元文:</b> 11/10 夏祭り準備会やります<br><b>AI生成:</b> 11月10日開催の夏祭りに向けた準備会を自治会館で開催します。屋台や飾り付けの分担を決めますので、皆様のご参加をお待ちしております。</div>";
     return;
   }
