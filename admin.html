@@ -29,7 +29,7 @@ input,textarea{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;ma
 <a href="https://mimo-lgtm.github.io/yamate-cho/" class="btn" style="background:#eee;">🏠 ホームに戻る</a>
 </div>
 <div style="margin-bottom:12px;">
-<label style="font-size:12px;font-weight:800;">GAS URL（あなたのGASのURLを入れてください）</label>
+<label style="font-size:12px;font-weight:800;">https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec</label>
 <input type="text" id="gasUrl" placeholder="https://script.google.com/macros/s/.../exec" value="https://script.google.com/macros/s/AKfycbySsZlA2IKFhv8O1TYoMbmFf0BGm87-2bQfG8UprB7etUcytFvppl6grCZMgpueKyDG-w/exec">
 <button class="btn" style="background:#eee;" onclick="saveGasUrl()">保存</button>
 </div>
@@ -115,7 +115,7 @@ async function approveQueue(queueId, target){
 }
 async function checkCalendarNow(){
   const status=document.getElementById('queueStatus');
-  const GAS_URL=getGasUrl(https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec);
+  const GAS_URL=getGasUrl();
   status.textContent="📅 カレンダーをチェック中...（GASのカレンダーを読みに行きます）";
   try{
     const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"calendarCheck"})});
