@@ -29,8 +29,8 @@ input,textarea{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;ma
 <a href="https://mimo-lgtm.github.io/yamate-cho/" class="btn" style="background:#eee;">🏠 ホームに戻る</a>
 </div>
 <div style="margin-bottom:12px;">
-<label style="font-size:12px;font-weight:800;">https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec</label>
-<input type="text" id="gasUrl" placeholder="https://script.google.com/macros/s/.../exec" value="https://script.google.com/macros/s/AKfycbySsZlA2IKFhv8O1TYoMbmFf0BGm87-2bQfG8UprB7etUcytFvppl6grCZMgpueKyDG-w/exec">
+<label style="font-size:12px;font-weight:800;">GAS URL（あなたのGASのURLを入れてください）</label>
+<input type="text" id="gasUrl" placeholder="https://script.google.com/macros/s/.../exec" value="https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec">
 <button class="btn" style="background:#eee;" onclick="saveGasUrl()">保存</button>
 </div>
 <div id="queueList"></div>
@@ -40,7 +40,7 @@ function esc(s){return (s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>
 function getGasUrl(){
   const saved = localStorage.getItem('yamate_gas_url');
   const input = document.getElementById('gasUrl').value.trim();
-  return input || saved || "https://script.google.com/macros/s/AKfycbySsZlA2IKFhv8O1TYoMbmFf0BGm87-2bQfG8UprB7etUcytFvppl6grCZMgpueKyDG-w/exec";
+  return input || saved || "https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec";
 }
 function saveGasUrl(){
   const url = document.getElementById('gasUrl').value.trim();
@@ -54,7 +54,7 @@ async function loadQueue(){
   const list=document.getElementById('queueList');
   const status=document.getElementById('queueStatus');
   const GAS_URL = getGasUrl();
-  if(GAS_URL.includes('AKfycby...') || !GAS_URL.includes('script.google.com')){
+  if(GAS_URL.includes('https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec') || !GAS_URL.includes('script.google.com')){
     list.innerHTML="<p style='color:#c44;'>GAS URLを正しく入力してください</p>";
     return;
   }
