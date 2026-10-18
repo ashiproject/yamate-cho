@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山手町 管理者デバッグページ</title>
+<style>
+body{font-family:sans-serif;background:#eef0e4;padding:16px;line-height:1.6;}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;border:2px solid #ddd;}
+.ok{border-color:#4caf50;background:#e8f5e9;} .ng{border-color:#f44336;background:#ffebee;} .info{border-color:#2196f3;background:#e3f2fd;}
+.queue-card{background:#e3f2fd;border:2px solid #2196f3;border-radius:12px;padding:14px;margin-bottom:12px;}
+.btn{padding:10px 16px;border:none;border-radius:8px;font-weight:800;cursor:pointer;margin:4px;}
+.btn-green{background:#2f5d34;color:#fff;} .btn-blue{background:#2196f3;color:#fff;} .btn-orange{background:#e8a33d;}
+input,textarea{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin:4px 0;}
+</style>
+</head>
+<body>
+<h1>🔧 山手町 管理者デバッグページ</h1>
+<p style="font-size:12px;">このページで「カレンダー連携が本当に動くか」「AIが100文字にしてくれるか」「通知が来るか」を全部検証できます。</p>
+<div class="card">
+<label style="font-size:12px;font-weight:800;">GAS URL</label>
+<input type="text" id="gasUrl" value="https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec">
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+<button class="btn btn-blue" onclick="testPing()">① 接続テスト (ping)</button>
+<button class="btn btn-blue" onclick="testQueue()">② 承認待ち確認 (getQueue)</button>
+<button class="btn btn-green" onclick="testAI()">③ AI変換テスト (20字→100字)</button>
+<button class="btn btn-green" onclick="checkCalendarNow()">④ カレンダーチェック (calendarCheck)</button>
+</div>
+<div id="testResult" style="margin-top:10px;font-size:12px;min-height:20px;"></div>
+</div>
+<div class="card" style="background:#fff3cd;border-color:#e8a33d;">
+<h3>📅 Googleカレンダーへの記載方法（検証用）</h3>
+<p style="font-size:12px;">
+<b>GASのアカウントのカレンダー</b>（GASをデプロイしたアカウント = ashiproject関連アカウント）にこう書いてください：<br><br>
+<b>パターンA：今日すぐ通知したい（テスト用）</b><br>
+日付：今日<br>
+件名：<code>[通知] クリスマス会やります</code><br>
+説明：<code>リマインド:今日の日付 投稿先:お知らせ</code> → 例：<code>リマインド:2026-10-18</code><br><br>
+<b>パターンB：12/10のイベントを11/10に通知（本番）</b><br>
+日付：12月10日<br>
+件名：<code>[通知] クリスマス会やります</code><br>
+説明：<code>元文:クリスマス会やります
+リマインド:2026-11-10
+投稿先:お知らせ
+イベント日:2026-12-10</code><br><br>
+その後、上記④「カレンダーチェック」を押すと、AIが100字にしてくれて承認待ちに入ります。
+</p>
+</div>
+<div class="card info">
+<h3>📧 通知方法について</h3>
+<p style="font-size:12px;">
+<b>現在実装済み：メール通知</b><br>
+- カレンダーから承認待ちが作成されると、GASのアカウントのメールアドレスに自動でメールが届きます<br>
+- 件名：「【山手町】承認待ち：クリスマス会やります」<br><br>
+<b>疑似アプリ通知（PWA）について：</b><br>
+- 以前のようにサイトをホーム画面に追加してアプリ化することは可能です<br>
+- ただし、iPhone/Androidのプッシュ通知（アプリに通知）は、メールより設定が複雑で、追加のサーバーが必要です<br>
+- 今回は確実な<b>メール通知 + 管理者ページで確認</b>の方式にしています<br>
+- ご希望ならPWA化（manifest.json）も追加できます
+</p>
+</div>
+<div class="card">
+<h3>📋 承認待ちリスト</h3>
+<button class="btn btn-blue" onclick="testQueue()">更新</button>
+<div id="queueList" style="margin-top:10px;"></div>
+<div id="queueStatus" style="font-size:12px;color:#2f5d34;margin-top:8px;"></div>
+</div>
+<script>
+const DEFAULT_GAS = "https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec";
+function getGasUrl(){ return document.getElementById('gasUrl').value.trim() || DEFAULT_GAS; }
+function esc(s){return (s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function setResult(html, isOk=true){
+  const el=document.getElementById('testResult');
+  el.innerHTML=html;
+  el.parentElement.className = 'card ' + (isOk ? 'ok' : 'ng');
+}
+async function testPing(){
+  const GAS_URL=getGasUrl();
+  setResult('接続テスト中...', true);
+  try{
+    const res=await fetch(GAS_URL+"?action=ping");
+    const txt=await res.text();
+    let json;
+    try{ json=JSON.parse(txt); }catch(e){ json={raw:txt}; }
+    if(json.status==='success'){
+      setResult(`✅ 接続成功！<br>GASバージョン: ${json.version||'不明'}<br>時刻: ${json.time}<br>メッセージ: ${json.message}`, true);
+    }else{
+      setResult(`❌ 接続失敗：${txt.slice(0,500)}`, false);
+    }
+  }catch(e){
+    setResult(`❌ 接続エラー: ${e.message}<br>GASのデプロイを確認してください。「ウェブアプリ」として公開し、「全員」がアクセスできる設定にしてください。`, false);
+  }
+}
+async function testQueue(){
+  const GAS_URL=getGasUrl();
+  const list=document.getElementById('queueList');
+  const status=document.getElementById('queueStatus');
+  setResult('承認待ち確認中...', true);
+  list.innerHTML='読み込み中...';
+  try{
+    const res=await fetch(GAS_URL+"?action=getQueue");
+    const txt=await res.text();
+    let json;
+    try{ json=JSON.parse(txt); }catch(e){ setResult(`❌ JSON解析失敗: ${txt.slice(0,500)}`, false); list.innerHTML=''; return; }
+    if(json.status!=='success'){
+      setResult(`❌ getQueueエラー: ${json.message}`, false);
+      list.innerHTML='';
+      return;
+    }
+    const queues=json.queues||[];
+    setResult(`✅ getQueue成功：${queues.length}件のキューがあります（承認待ち含む）`, true);
+    if(queues.length===0){
+      list.innerHTML='<p>承認待ちはありません。カレンダーに [通知] イベントを登録して「カレンダーチェック」を押してください。</p>';
+      return;
+    }
+    const pending=queues.filter(q=>!q.status || q.status==='承認待ち');
+    list.innerHTML = queues.map(q=>`
+      <div class="queue-card">
+        <div style="font-size:11px;color:#666;">ID:${esc(q.id)} | イベント日:${esc(q.eventDate)} | リマインド:${esc(q.notifyDate)} | 状態:${esc(q.status)} | 投稿先:${esc(q.target)}</div>
+        <div style="margin:6px 0;"><b>元文:</b> ${esc(q.original)}</div>
+        <div style="margin:6px 0;background:#fff;padding:8px;border-radius:6px;"><b>AI生成:</b><br>${esc(q.aiText)} (${(q.aiText||'').length}文字)</div>
+        <div style="display:grid;gap:4px;margin-top:8px;">
+          <input type="text" id="title-${q.id}" value="${esc(q.original)}">
+          <textarea id="body-${q.id}" rows="3">${esc(q.aiText)}</textarea>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;">
+          <button class="btn btn-green" style="flex:1;" onclick="approveQueue('${q.id}','お知らせ')">✅ お知らせに承認</button>
+          <button class="btn" style="flex:1;background:#eee;" onclick="approveQueue('${q.id}','広場')">💬 広場</button>
+          <button class="btn btn-blue" style="flex:1;" onclick="approveQueue('${q.id}','both')">両方</button>
+        </div>
+      </div>
+    `).join('');
+    status.textContent=`承認待ち: ${pending.length}件 / 全${queues.length}件`;
+  }catch(e){
+    setResult(`❌ エラー: ${e.message}`, false);
+  }
+}
+async function testAI(){
+  const GAS_URL=getGasUrl();
+  setResult('AI変換テスト中... 20文字→100文字', true);
+  try{
+    const res=await fetch(GAS_URL,{method:'POST',headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:'testAI', text:'クリスマス会やります', eventDate:'2026-12-10'})});
+    const txt=await res.text();
+    let json;
+    try{ json=JSON.parse(txt); }catch(e){ setResult(`❌ AI変換失敗: ${txt.slice(0,800)}`, false); return; }
+    if(json.status==='success'){
+      setResult(`✅ AI変換成功！<br><b>元文:</b> ${esc(json.original)} (${json.original.length}文字)<br><b>AI生成:</b> ${esc(json.expanded)}<br><b>文字数:</b> ${json.length}文字`, true);
+    }else{
+      setResult(`❌ AI変換エラー: ${json.message}`, false);
+    }
+  }catch(e){
+    setResult(`❌ エラー: ${e.message}`, false);
+  }
+}
+async function checkCalendarNow(){
+  const GAS_URL=getGasUrl();
+  setResult('カレンダーチェック中... GASのアカウントのカレンダーを90日先までスキャン', true);
+  try{
+    const res=await fetch(GAS_URL,{method:'POST',headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:'calendarCheck'})});
+    const txt=await res.text();
+    let json;
+    try{ json=JSON.parse(txt); }catch(e){ setResult(`❌ チェック失敗: ${txt.slice(0,800)}`, false); return; }
+    if(json.status==='success'){
+      const r=json.result||{};
+      setResult(`✅ カレンダーチェック成功！<br>スキャンしたイベント: ${r.checked}件<br>新規作成: ${r.created}件<br>カレンダー名: ${esc(r.calendar||'')}<br>今日: ${r.today}<br>詳細: ${esc(JSON.stringify(r.details||[]).slice(0,500))}`, true);
+      testQueue();
+    }else{
+      setResult(`❌ チェックエラー: ${json.message}`, false);
+    }
+  }catch(e){
+    setResult(`❌ エラー: ${e.message}`, false);
+  }
+}
+async function approveQueue(queueId, target){
+  const title=document.getElementById('title-'+queueId)?.value||'';
+  const body=document.getElementById('body-'+queueId)?.value||'';
+  const password=prompt("管理者パスワード (yamate2026):");
+  if(!password) return;
+  const GAS_URL=getGasUrl();
+  const status=document.getElementById('queueStatus');
+  status.textContent='承認中...';
+  try{
+    const res=await fetch(GAS_URL,{method:'POST',headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:'approveNotice', queueId:queueId, target:target, customTitle:title, customBody:body, password:password})});
+    const txt=await res.text();
+    let json;
+    try{ json=JSON.parse(txt); }catch(e){ status.textContent='❌ '+txt.slice(0,300); return; }
+    if(json.status==='success'){
+      status.textContent='✅ '+json.message;
+      testQueue();
+    }else{
+      status.textContent='❌ '+json.message;
+    }
+  }catch(e){
+    status.textContent='❌ '+e.message;
+  }
+}
+</script>
+</body>
+</html>
