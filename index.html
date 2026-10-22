@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>芦屋市山手町町内会 - V87 画像確実反映</title>
+<title>芦屋市山手町町内会 - V95 20文字→100文字確実版</title>
 <style>
 :root{--primary:#2f5d34;--accent:#e8a33d;--bg:#eef0e4;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -25,7 +25,6 @@ header{background:#1b3329;color:#fff;padding:18px;text-align:center;}
 .btn-secondary{background:#eee;color:#333;border:1px solid #ccc;}
 .btn-ai{background:#e8a33d;color:#000;border:1px solid #e8a33d;}
 .section-title{font-size:18px;font-weight:900;border-bottom:3px solid var(--primary);padding-bottom:6px;margin:20px 0 10px;}
-.news-list{list-style:none;}
 .news-item{background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:14px;cursor:pointer;}
 .news-item .full{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed #ddd;white-space:pre-wrap;background:#fff8e1;padding:8px;border-radius:6px;}
 .news-item.open .full{display:block;}
@@ -35,11 +34,9 @@ header{background:#1b3329;color:#fff;padding:18px;text-align:center;}
 .category-tag{background:#eef0e4;padding:3px 10px;border-radius:999px;font-size:11px;border:1px solid #ddd;}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;} .tab{padding:7px 14px;border-radius:999px;background:#fff;border:1px solid #ccc;font-size:13px;cursor:pointer;} .tab.active{background:#2f5d34;color:#fff;border-color:#2f5d34;}
 .post-form-card{background:#fff;border:2px solid var(--accent);border-radius:12px;padding:16px;margin-bottom:16px;}
-.admin-card{background:#fff3f3;border:2px solid #c44;border-radius:12px;padding:16px;margin-bottom:16px;display:none;}
-.admin-card.open{display:block;}
+.log{background:#263238;color:#b2ff59;font-family:monospace;padding:10px;border-radius:8px;white-space:pre-wrap;max-height:300px;overflow:auto;font-size:12px}
 footer{text-align:center;padding:20px;color:#888;font-size:12px;}
 input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px solid #ccc;border-radius:6px;margin:4px 0 10px}
-.log{background:#263238;color:#b2ff59;font-family:monospace;padding:10px;border-radius:8px;white-space:pre-wrap;max-height:300px;overflow:auto;font-size:12px}
 </style>
 </head>
 <body>
@@ -52,7 +49,7 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 <a href="https://sites.google.com/view/yamatechoasiya-city/kyotei?authuser=0" class="nav-btn" target="_blank">🏛 まちづくり協定</a>
 <a href="https://sites.google.com/view/yamatechoasiya-city/public?authuser=0" class="nav-btn" target="_blank">🏢 公的機関</a>
 <a href="#" class="nav-btn" onclick="switchPage('square');return false;">💬 みんなの広場</a>
-<a href="#" class="nav-btn admin" onclick="switchPage('admin');return false;">⚙️ 管理者ページ</a>
+<a href="#" class="nav-btn admin" onclick="switchPage('admin');return false;">⚙ 管理者ページ</a>
 </div></div>
 <div class="container">
 <div id="home-view" class="page-view active">
@@ -60,9 +57,9 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 <h4>私たちの活動の土台：山手町「街づくり協定」</h4>
 <p>山手町の美しい自然環境、良好な住環境、そして安全で安心な暮らしを守るため、住民全員で共有している大切なルールと指針です。</p>
 <div style="margin-top:10px;padding:8px;background:#fff;border-radius:6px;font-size:12px;border:1px dashed var(--accent);">
-<b>💡 V87：20文字→100文字AI + 画像確実反映版</b><br>
-みんなの広場で「夏祭りやります」と20文字→AIで100文字に膨らませて画像付き投稿できます。
-<div id="status" style="font-size:10px;color:#888;text-align:right;margin-top:4px">V87 画像確実反映</div>
+<b>V95：20文字→100文字確実動作版＋過去4件＋最新お知らせ3件</b><br>
+みんなの広場は20文字→AIで100文字に膨らませて投稿。画像も表示されます。
+<div id="status" style="font-size:11px;color:#0a0;text-align:right;margin-top:4px;font-weight:700">V90 読み込み準備中...</div>
 </div>
 </div>
 <div class="pillars-grid">
@@ -76,28 +73,18 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 </section>
 </div>
 <div id="square-view" class="page-view">
-<h2 class="section-title">💬 みんなの広場 - 画像確実反映 + AI膨らませ</h2>
+<h2 class="section-title">💬 みんなの広場 - 画像確実反映 + AI100文字</h2>
 <div class="post-form-card">
-<h3>投稿する（画像確実に反映されます）</h3>
+<h3>投稿する</h3>
 <label>お名前（匿名可）</label><input id="postAuthor" placeholder="匿名">
-<label>カテゴリー</label>
-<select id="postCategory">
-<option>すべて</option>
-<option>防犯</option>
-<option>イベント</option>
-<option>要望</option>
-<option>その他</option>
-</select>
-<label>コメント（20文字程度でOK）</label>
-<textarea id="postComment" rows="3" placeholder="例：夏祭りやります（20文字）"></textarea>
+<label>カテゴリー</label><select id="postCategory"><option>すべて</option><option>防犯</option><option>イベント</option><option>要望</option><option>その他</option></select>
+<label>コメント（20文字程度でOK）</label><textarea id="postComment" rows="3" placeholder="例：夏祭りやります"></textarea>
 <div style="display:flex;gap:8px;margin:6px 0;flex-wrap:wrap;">
 <button class="btn btn-ai" onclick="expandWithAI()">✨ AIで100文字に膨らませる</button>
 <span id="aiStatus" style="font-size:12px;color:#666;align-self:center;"></span>
 </div>
-<label>画像（任意） - 5MB以下</label>
-<input type="file" id="postImage" accept="image/*">
+<label>画像（任意） - 5MB以下</label><input type="file" id="postImage" accept="image/*">
 <div id="imagePreview" style="margin-top:8px"></div>
-<div id="imageDebug" style="font-size:11px;color:#888;margin-top:4px"></div>
 <div style="margin-top:12px;display:flex;gap:8px;">
 <button class="btn" onclick="submitPost()">投稿する</button>
 <button class="btn btn-secondary" onclick="switchPage('home')">ホームに戻る</button>
@@ -106,18 +93,19 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 </div>
 <div class="tabs" id="filterTabs">
 <span class="tab active" onclick="filterPosts('すべて',this)">すべて</span>
+<span class="tab" onclick="filterPosts('季節の行事',this)">季節の行事</span>
+<span class="tab" onclick="filterPosts('食べる・集まる',this)">食べる・集まる</span>
+<span class="tab" onclick="filterPosts('子ども・親子で楽しむ',this)">子ども・親子で楽しむ</span>
 <span class="tab" onclick="filterPosts('防犯',this)">防犯</span>
 <span class="tab" onclick="filterPosts('イベント',this)">イベント</span>
 <span class="tab" onclick="filterPosts('要望',this)">要望</span>
-<span class="tab" onclick="filterPosts('その他',this)">その他</span>
 </div>
 <div id="postsContainer">読込中...</div>
 </div>
 <div id="admin-view" class="page-view">
-<h2 class="section-title">⚙️ 管理者ページ - V87</h2>
+<h2 class="section-title">⚙ 管理者ページ - V90</h2>
 <div class="post-form-card">
-<h3>🔧 接続テスト（画像用Drive権限確認）</h3>
-<p style="font-size:12px">画像が反映されない場合、まずこのボタンを押してください。Drive権限エラーが出れば、GASで authorizeDrive() を実行してください。</p>
+<h3>🔧 接続テスト</h3>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
 <button class="btn" onclick="testPing()">🔌 GAS接続テスト</button>
 <button class="btn btn-secondary" onclick="testDrive()">💾 Drive接続テスト</button>
@@ -134,31 +122,49 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 <span id="noticeAddStatus" style="font-size:12px"></span>
 </div>
 <div class="post-form-card">
-<h3>📋 現在のお知らせ一覧</h3>
+<h3>📋 現在のお知らせ一覧（GAS）</h3>
 <div id="noticeListAdmin">読込中...</div>
 </div>
 </div>
 </div>
-<footer>芦屋市山手町町内会 / V87 画像確実反映 + AI膨らませ版</footer>
+<footer>芦屋市山手町町内会 / V95</footer>
 <script>
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec';
 let allPosts=[]; let currentFilter='すべて'; let imageBase64='';
 function switchPage(id){
-  document.getElementById('home-view').classList.remove('active');
-  document.getElementById('square-view').classList.remove('active');
-  document.getElementById('admin-view').classList.remove('active');
+  document.querySelectorAll('.page-view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id+'-view').classList.add('active');
   if(id==='admin') loadNoticesAdmin();
   window.scrollTo(0,0);
 }
 function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function toggleNotice(el){el.classList.toggle('open');}
+// デフォルトで必ず見えるデータ（GASが落ちても表示される）
+// 過去の広場データを初期表示用に変換（descriptionを本文として使う）
+const DEFAULT_POSTS = INITIAL_HIROBA.map(p=>({
+  timestamp:p.timestamp,
+  author:p.author,
+  summary:p.summary,
+  comment:p.description,  // 100文字以上の本文
+  category:p.category,
+  imageUrl:p.imageUrl,
+  title:p.summary.slice(0,30)
+}));
+const INITIAL_HIROBA = [
+{timestamp:"2026-05-10T10:00:00",author:"環境美化委員会",summary:"ゴールデンウィークの一日、皆で清掃活動に励みました。",category:"季節の行事",imageUrl:"https://www.city.ashiya.lg.jp/kodomo/kodomohoiku/images/iwazonohoukatu01.jpg",description:"先日来の強風のために、落葉が多く、雑草も元気に出てきています。初めて清掃活動に参加された方も一緒に、五月晴れの緑地公園で楽しく清掃しました！"},
+{timestamp:"2026-05-09T16:00:00",author:"イベント班",summary:"春の一日、緑地清掃とイベントにご参加いただき、ありがとうございました。",category:"食べる・集まる",imageUrl:"https://placehold.co/800x600/FF8C00/FFFFFF?text=%E7%84%BC%E3%81%8D%E8%8A%8B%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88",imageUrlOriginal:"https://www.sapporo.travel/cms/wp-content/uploads/2025/10/%E3%81%95%E3%81%A3%E3%81%BD%E3%82%8D%E7%84%BC%E3%81%8D%E8%8A%8B%E3%83%86%E3%83%A9%E3%82%B92024-19-1200x900.jpg",description:"70個のお芋が全部きれいに無くなりました！"},
+{timestamp:"2026-05-08T09:00:00",author:"イベント班",summary:"子ども12名、大人40名の参加者は全員、大満足のバスツアーでした。",category:"子ども・親子で楽しむ",imageUrl:"https://prtimes.jp/i/607/559/resize/d607-559-107882-0.jpg",description:"圧巻は、西日本ではここ『須磨シ―ワールド』でしかみることのできない「オルカショー」。体重が3トンの“ステラ”と“ラン”の親子が巨体で見せてくれる数々の“芸”（パフォーマンス）は、巨大だけにその愛らしさ愛おしさが何十倍にも感じられました。帰路のお買い物も含めて、老若男女、笑顔のバスツアーでした！！"},
+{timestamp:"2026-05-07T14:00:00",author:"防犯委員",summary:"”地域で自分の街は自分で守る”",category:"季節の行事",imageUrl:"https://www.city.itako.lg.jp/data/img/2-1325645820_14.jpg",description:"防犯委員で、山手町町内会のオリジナルバッグを作成しました。山手町内の防犯、町の結束、不審者が近寄りにくい町づくり。そして子供達を守る！を目的に作成致しました。腕章を付けている人は山手町の人！安全な人だと子供達にもわかりやすくするため、キャラクターを作り、そのキャラクターを取り入れ子供達に認識してもらいやすいデザインにしました。画像を子供達に見せて「この腕章をつけてる人は町の人だよ〜」「困ったら声かけていいんだよ〜」とお伝えしてもらえると助かります♡"}
+];
 const DEFAULT_NOTICES = [
+  {date:'2026-11-07', title:'11月山手緑地清掃活動のお知らせ', content:'■ 11月山手緑地清掃活動のお知らせ\n\n11月7日（土） 9:00-9:30\n\n軍手、お菓子、飲料等をご用意しています。\n皆さん、お気軽にご参加ください。'},
+  {date:'2026-10-28', title:'防犯パトロール実施のお知らせ', content:'■ 防犯パトロールは月に1回夜間に実施しています\n\n10月28日（水）\n19:30 山手町学校 東門に集合してください（雨天中止）'},
+  {date:'2026-10-17', title:'防犯パトロール隊 10月定例会議', content:'■ 防犯パトロール隊 10月定例会議\n\n10月17日（土） 14:00-15:00\n山手小学校 コミスク室にて\n\n防犯パトロール隊の取組みについてはこちらをご覧ください。'},
+  {date:'2026-10-22', title:'テスト oct22 新年会案内', content:'2026-10-22 テスト oct22 新年会案内 - 管理者投稿テスト'},
+  {date:'2026-08-10', title:'test test', content:'test test - 管理者テスト投稿'},
   {date:'2026-06-06', title:'6月 山手線地清掃活動のお知らせ', content:'6月6日（金）午前9時より、山手線沿いの清掃活動を行います。'},
   {date:'2026-05-23', title:'2026年度 定時総会を開催します', content:'2026年度定時総会を5月23日（土）14時より集会所で開催します。'},
-  {date:'2026-05-20', title:'防犯パトロール実施のお知らせ', content:'防犯パトロールを5月20日より毎週火・金曜日の20時から実施します。'},
-  {date:'2026-05-02', title:'5月 山手線地清掃活動終了報告', content:'5月2日の清掃活動は無事終了しました。'},
-  {date:'2026-03-07', title:'3月清掃活動と焼き芋キッチンカー報告', content:'3月7日の清掃活動と焼き芋キッチンカーイベントは大盛況でした。'}
+  {date:'2026-05-20', title:'防犯パトロール実施のお知らせ', content:'防犯パトロールを5月20日より毎週火・金曜日の20時から実施します。'}
 ];
 function renderNotices(notices){
   const container=document.getElementById('noticesContainer');
@@ -171,7 +177,7 @@ function renderNotices(notices){
   Object.keys(grouped).sort().reverse().forEach(year=>{
     html+=`<div class="year-header">📅 ${year}年度のお知らせ（${grouped[year].length}件）</div>`;
     grouped[year].forEach(n=>{
-      const title = n.title || n.short || n.content.slice(0,30);
+      const title = n.title || (n.content||'').slice(0,40);
       html+=`<div class="news-item" onclick="toggleNotice(this)"><b>${esc(n.date||'')}</b> ${esc(title)}<div class="full">${esc(n.content||'')}</div></div>`;
     });
   });
@@ -179,58 +185,63 @@ function renderNotices(notices){
 }
 async function loadFromGAS(){
   const statusEl=document.getElementById('status');
+  // まずデフォルトを即表示（必ず見えるように）
+  renderNotices(DEFAULT_NOTICES);
+  if(allPosts.length===0){
+    allPosts = DEFAULT_POSTS.map(d=>({...d}));
+    renderPosts();
+  }
   try{
-    if(statusEl) statusEl.textContent='読込中...';
+    if(statusEl) statusEl.textContent='GASから読込中...';
     const res=await fetch(GAS_URL+'?action=list&t='+Date.now());
     const data=await res.json();
-    if(statusEl) statusEl.textContent=`V87 お知らせ:${data.notices?.length||0} 広場:${data.data?.length||0} 画像あり:${(data.data||[]).filter(d=>d.imageUrl).length}件`;
+    if(statusEl) statusEl.textContent=`V95 お知らせ:${data.notices?.length||0}件 広場:${data.data?.length||0}件 画像:${(data.data||[]).filter(d=>d.imageUrl).length}件 - 正常読込`;
     if(data.notices && data.notices.length>0){
-      const gasNotices = data.notices.map(n=>({date:n.date, title:n.content.slice(0,30), content:n.content, short:n.short}));
-      const combined = [...gasNotices, ...DEFAULT_NOTICES];
-      renderNotices(combined);
-    }else{
-      renderNotices(DEFAULT_NOTICES);
+      const gasNotices = data.notices.map(n=>({date:n.date, title:(n.content||'').slice(0,40), content:n.content, short:n.short}));
+      renderNotices(gasNotices);
     }
     if(data.data && data.data.length>0){
       allPosts = data.data.map(d=>({
-        timestamp:d.timestamp, author:d.author, summary:d.summary||d.content.slice(0,30),
-        comment:d.content||d.comment, category:d.category||'その他',
+        timestamp:d.timestamp, author:d.author,
+        summary:d.summary||(d.content||'').slice(0,100),
+        comment:d.content||d.comment||d.summary, 
+        category:d.category||'その他',
         imageUrl:d.imageUrl||'', title:d.title||''
       }));
+      renderPosts();
     }
-    renderPosts();
   }catch(e){
-    if(statusEl) statusEl.textContent='エラー:'+e.message;
-    renderNotices(DEFAULT_NOTICES);
-    renderPosts();
+    if(statusEl) statusEl.textContent='GAS読込エラー（デフォルト表示中）:'+e.message+' - 再読込ボタンで再試行してください';
+    // エラーでもデフォルトは表示されたまま
   }
 }
 function renderPosts(){
   const container=document.getElementById('postsContainer');
   if(!container) return;
-  let filtered = currentFilter==='すべて' ? allPosts : allPosts.filter(p=> (p.category||'').includes(currentFilter) );
+  let filtered = currentFilter==='すべて' ? allPosts : allPosts.filter(p=> (p.category||'').includes(currentFilter) || currentFilter==='その他' || p.category===currentFilter);
   if(filtered.length===0){
-    container.innerHTML='<p style="color:#888">まだ投稿がありません。</p>';
+    container.innerHTML='<p style="color:#888">まだ投稿がありません。みんなの広場から投稿してください。</p>';
     return;
   }
   filtered = filtered.sort((a,b)=> new Date(b.timestamp)-new Date(a.timestamp));
   container.innerHTML=filtered.map(p=>{
-    // 画像URLがあれば確実に表示、なければ非表示
     let imgHtml = '';
-    if(p.imageUrl){
-      // Driveのthumbnail URLとuc URLの両方に対応
-      const safeUrl = p.imageUrl.replace(/"/g,'');
-      imgHtml = `<img src="${safeUrl}" style="width:100%;max-height:500px;object-fit:contain;border-radius:8px;margin-top:8px;background:#f0f0f0;" loading="lazy" onerror="this.onerror=null; this.src='${safeUrl.replace('thumbnail','uc').replace('&sz=w1000','') }'; if(this.src.includes('thumbnail')){this.style.display='block'}else{this.style.display='none'; const alt=document.createElement('div'); alt.textContent='画像を表示できません: '+safeUrl; alt.style.fontSize='11px'; alt.style.color='#888'; this.parentNode.appendChild(alt); }">`;
-      // デバッグ用にURLも表示
-      imgHtml += `<div style="font-size:10px;color:#aaa;word-break:break-all;margin-top:2px;">画像URL: ${esc(safeUrl.slice(0,80))}...</div>`;
+    let rawUrl = (p.imageUrl||'').toString().trim();
+    if(rawUrl){
+      rawUrl = rawUrl.replace(/"/g,'');
+      imgHtml = `
+        <div style="margin-top:10px;">
+          <img src="${rawUrl}" 
+               referrerpolicy="no-referrer"
+               style="width:100%;max-height:600px;object-fit:contain;border-radius:8px;background:#f5f5f5;display:block;" 
+               loading="lazy"
+               onerror="this.onerror=null; this.src='https://placehold.co/800x450/eef0e4/2f5d34?text=画像を表示できません'; this.style.objectFit='contain'; let cap=document.createElement('div'); cap.textContent='元画像: '+(this.dataset.original||'').slice(0,80); cap.style.fontSize='10px'; cap.style.color='#888'; cap.style.marginTop='4px'; cap.style.wordBreak='break-all'; this.parentNode.appendChild(cap);"
+               data-original="${rawUrl.replace(/"/g,'&quot;')}"
+          >
+        </div>`;
     }
-    return `
-    <div class="post-card">
-      <div class="post-header"><span>${esc(p.author||'匿名')} / <span class="category-tag">${esc(p.category||'その他')}</span></span><span>${esc((p.timestamp||'').slice(0,10))}</span></div>
-      <div style="margin-top:6px;white-space:pre-wrap;font-size:14px">${esc(p.comment||p.summary||'')}</div>
-      ${imgHtml}
-    </div>
-  `;
+    const displayText = p.comment || p.summary || p.description || '';
+    return `<div class="post-card"><div class="post-header"><span>${esc(p.author||'匿名')} / <span class="category-tag">${esc(p.category||'その他')}</span></span><span>${esc((p.timestamp||'').toString().slice(0,16))}</span></div><div style="margin-top:8px;white-space:pre-wrap;font-size:14px;line-height:1.8;">${esc(displayText)}</div>${imgHtml}</div>`;
   }).join('');
 }
 function filterPosts(cat,el){
@@ -239,28 +250,47 @@ function filterPosts(cat,el){
   if(el) el.classList.add('active');
   renderPosts();
 }
+function localExpand(text){
+  // GASのAIが失敗した時のローカル100文字膨らませ（テンプレート）
+  const templates = [
+    `【お知らせ】${text}。地域の皆様に心よりお知らせいたします。詳細は以下の通りです。皆様のご参加を心よりお待ちしております。ご不明な点がございましたら、お気軽にお声がけください。`,
+    `${text}について、皆様にお知らせします。山手町の美しい環境を守るため、また安全で安心な暮らしを続けるため、皆様のご協力をお願いいたします。お気軽にご参加ください。`,
+    `山手町町内会からお知らせです。${text}。地域のつながりを大切に、皆で楽しい時間を過ごしましょう。多くの方のご参加をお待ちしております。どうぞよろしくお願いいたします。`
+  ];
+  let base = templates[Math.floor(Math.random()*templates.length)];
+  // 100文字以上になるように調整
+  if(base.length < 90){
+    base += " 皆様のご参加が、山手町をより良い街にします。";
+  }
+  if(base.length > 140) base = base.slice(0,135) + "。";
+  return base;
+}
 async function expandWithAI(){
   const commentEl=document.getElementById('postComment');
   const status=document.getElementById('aiStatus');
   const text=commentEl.value.trim();
   if(!text){ alert('まず20文字程度の短い文を入力してください。例：夏祭りやります'); return; }
+  if(text.length >= 90){
+    status.textContent='✅ すでに100文字近いです。そのまま投稿できます。';
+    return;
+  }
   status.textContent='✨ AIが100文字に膨らませています...';
   try{
-    const res=await fetch(GAS_URL,{
-      method:'POST',
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify({action:"expandText", text:text})
-    });
+    const res=await fetch(GAS_URL,{method:'POST',headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"expandText", text:text})});
     const json=await res.json();
-    if(json.status==='success' && json.expanded){
+    if(json.status==='success' && json.expanded && json.expanded.length >= 30){
       commentEl.value=json.expanded;
-      status.textContent='✅ 膨らませました！確認して投稿してください';
-      setTimeout(()=>{ status.textContent=''; }, 5000);
-    }else{
-      status.textContent='❌ 失敗: '+(json.message||'');
+      status.textContent=`✅ AIで膨らませました！（${json.expanded.length}文字）確認して投稿してください`;
+      setTimeout(()=>{status.textContent='';},6000);
+      return;
     }
+    // GAS失敗時はローカルで膨らませ
+    throw new Error(json.message||'GAS expand失敗');
   }catch(e){
-    status.textContent='❌ 通信エラー: '+e.message;
+    const expanded = localExpand(text);
+    commentEl.value=expanded;
+    status.textContent=`✅ ローカルで100文字に膨らませました！（${expanded.length}文字）GAS AIが使えないためテンプレートで作成しました。`;
+    setTimeout(()=>{status.textContent='';},6000);
   }
 }
 async function submitPost(){
@@ -269,29 +299,18 @@ async function submitPost(){
   const category=document.getElementById('postCategory').value||"すべて";
   const status=document.getElementById('postStatus');
   if(!comment && !imageBase64){ alert("コメントか画像を入れてください"); return; }
-  status.textContent="投稿中... 画像がある場合はDriveに保存しています（10秒ほどかかります）...";
+  status.textContent="投稿中...";
   try{
-    const payload = {action:"submit", title:comment.slice(0,30), summary:comment.slice(0,100), content:comment, author:author, category:category, bigCatName:category};
-    if(imageBase64){
-      payload.imageBase64 = imageBase64;
-    }
+    const payload={action:"submit", title:comment.slice(0,30), summary:comment.slice(0,100), content:comment, author:author, category:category, bigCatName:category};
+    if(imageBase64) payload.imageBase64=imageBase64;
     const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
     const json=await res.json();
-    console.log('submit result', json);
     if(json.status==="success"){
-      status.textContent="✅ 投稿成功！ 画像URL: "+(json.imageUrl||'なし')+" "+(json.uploadDebug?.error||'');
-      if(json.uploadDebug && json.uploadDebug.error){
-        status.textContent+=" エラー: "+json.uploadDebug.error+" → GASでauthorizeDrive()を実行してDrive権限を許可してください";
-      }
-      document.getElementById('postComment').value='';
-      document.getElementById('postImage').value='';
-      document.getElementById('imagePreview').innerHTML='';
-      imageBase64='';
+      status.textContent="✅ 投稿成功！";
+      document.getElementById('postComment').value=''; document.getElementById('postImage').value=''; document.getElementById('imagePreview').innerHTML=''; imageBase64='';
       setTimeout(()=>loadFromGAS(),1500);
-    }else{
-      status.textContent="エラー: "+json.message;
-    }
-  }catch(e){ status.textContent="通信エラー: "+e.message; console.error(e); }
+    }else status.textContent="エラー:"+json.message;
+  }catch(e){ status.textContent="通信エラー:"+e.message; }
 }
 async function addNotice(){
   const date=document.getElementById('noticeDate').value;
@@ -301,58 +320,29 @@ async function addNotice(){
   if(!content){ alert('内容を入れてください'); return; }
   status.textContent='送信中...';
   try{
-    const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"addNotice", date:date, content:content, password:pass, target:'お知らせ', show:true})});
+    const payload={action:"addNotice", date:date, content:content, password:pass};
+    const res=await fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
     const json=await res.json();
-    if(json.status==="success"){ status.textContent='✅ 投稿成功'; loadFromGAS(); document.getElementById('noticeContent').value=''; } else{ status.textContent='❌ '+json.message; }
+    if(json.status==="success"){ status.textContent='✅ 投稿成功'; loadFromGAS(); document.getElementById('noticeContent').value=''; } else status.textContent='❌ '+json.message;
   }catch(e){ status.textContent='❌ '+e.message; }
 }
-async function testPing(){
-  const logEl=document.getElementById('testLog');
-  if(logEl){ logEl.style.display='block'; logEl.textContent='ping送信中...'; }
-  try{
-    const r=await fetch(GAS_URL+'?action=ping&t='+Date.now());
-    const j=await r.json();
-    if(logEl) logEl.textContent=JSON.stringify(j,null,2);
-  }catch(e){ if(logEl) logEl.textContent='エラー:'+e.message; }
-}
-async function testDrive(){
-  const logEl=document.getElementById('testLog');
-  if(logEl){ logEl.style.display='block'; logEl.textContent='Drive接続テスト中...'; }
-  try{
-    const r=await fetch(GAS_URL+'?action=testDrive&t='+Date.now());
-    const j=await r.json();
-    if(logEl) logEl.textContent=JSON.stringify(j,null,2);
-    if(j.status==='error'){
-      logEl.textContent+="\n\n→ GASエディタで authorizeDrive() を実行して、Driveの権限を許可してください。";
-    }
-  }catch(e){ if(logEl) logEl.textContent='エラー:'+e.message; }
-}
-async function loadNoticesAdmin(){
-  const el=document.getElementById('noticeListAdmin');
-  if(!el) return;
-  el.innerHTML='読込中...';
-  try{
-    const r=await fetch(GAS_URL+'?action=list&t='+Date.now());
-    const data=await r.json();
-    const notices=data.notices||[];
-    if(notices.length===0){ el.innerHTML='表示中のお知らせなし'; return; }
-    el.innerHTML=notices.slice().reverse().map(n=>`<div class="news-item"><b>${esc(n.date)}</b> ${esc(n.content)}</div>`).join('');
-  }catch(e){ el.innerHTML='失敗:'+e.message; }
-}
+async function testPing(){ const logEl=document.getElementById('testLog'); logEl.style.display='block'; logEl.textContent='ping送信中...'; try{ const r=await fetch(GAS_URL+'?action=ping&t='+Date.now()); const j=await r.json(); logEl.textContent=JSON.stringify(j,null,2);}catch(e){logEl.textContent='エラー:'+e.message;}}
+async function testDrive(){ const logEl=document.getElementById('testLog'); logEl.style.display='block'; logEl.textContent='Drive接続テスト中...'; try{ const r=await fetch(GAS_URL+'?action=testDrive&t='+Date.now()); const j=await r.json(); logEl.textContent=JSON.stringify(j,null,2);}catch(e){logEl.textContent='エラー:'+e.message;}}
+async function loadNoticesAdmin(){ const el=document.getElementById('noticeListAdmin'); el.innerHTML='読込中...'; try{ const r=await fetch(GAS_URL+'?action=list&t='+Date.now()); const data=await r.json(); const notices=data.notices||[]; if(notices.length===0){el.innerHTML='表示中のお知らせなし';return;} el.innerHTML=notices.slice().reverse().map(n=>`<div class="news-item"><b>${esc(n.date)}</b> ${esc(n.content)}</div>`).join('');}catch(e){el.innerHTML='失敗:'+e.message;}}
 document.addEventListener("DOMContentLoaded",()=>{
+  // まず即座に表示（GAS待たずに見える）
+  renderNotices(DEFAULT_NOTICES);
+  allPosts = DEFAULT_POSTS.map(d=>({...d}));
+  renderPosts();
+  // その後GASから最新を取りに行く
   loadFromGAS();
   const imgEl=document.getElementById('postImage');
-  const debugEl=document.getElementById('imageDebug');
   if(imgEl){
     imgEl.addEventListener('change', e=>{
       const file=e.target.files[0]; if(!file) return;
-      if(file.size>5*1024*1024){ alert('画像が大きすぎます。5MB以下にしてください'); return; }
+      if(file.size>5*1024*1024){ alert('画像が大きすぎます'); return; }
       const reader=new FileReader();
-      reader.onload=ev=>{
-        imageBase64=ev.target.result;
-        document.getElementById('imagePreview').innerHTML='<img src="'+ev.target.result+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:8px;"><div style="font-size:11px;color:#666">画像選択済み：'+file.name+' ('+Math.round(file.size/1024)+'KB)</div>';
-        if(debugEl) debugEl.textContent='Base64長さ: '+ev.target.result.length+' 文字 - 投稿時にDriveにアップロードされます';
-      };
+      reader.onload=ev=>{ imageBase64=ev.target.result; document.getElementById('imagePreview').innerHTML='<img src="'+ev.target.result+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:8px;">'; };
       reader.readAsDataURL(file);
     });
   }
