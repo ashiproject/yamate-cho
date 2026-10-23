@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>芦屋市山手町町内会 - V95 20文字→100文字確実版</title>
+<title>芦屋市山手町町内会 - V96 必ず見える版</title>
 <style>
 :root{--primary:#2f5d34;--accent:#e8a33d;--bg:#eef0e4;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -57,7 +57,7 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 <h4>私たちの活動の土台：山手町「街づくり協定」</h4>
 <p>山手町の美しい自然環境、良好な住環境、そして安全で安心な暮らしを守るため、住民全員で共有している大切なルールと指針です。</p>
 <div style="margin-top:10px;padding:8px;background:#fff;border-radius:6px;font-size:12px;border:1px dashed var(--accent);">
-<b>V95：20文字→100文字確実動作版＋過去4件＋最新お知らせ3件</b><br>
+<b>V96：HTMLに直接埋め込み版-必ず見える＋画像表示＋20文字→100文字</b><br>
 みんなの広場は20文字→AIで100文字に膨らませて投稿。画像も表示されます。
 <div id="status" style="font-size:11px;color:#0a0;text-align:right;margin-top:4px;font-weight:700">V90 読み込み準備中...</div>
 </div>
@@ -69,7 +69,25 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 </div>
 <section>
 <h3 class="section-title">📢 最新のお知らせ</h3>
-<div id="noticesContainer">読込中...</div>
+<div id="noticesContainer">
+<div class="year-header">📅 2026年度のお知らせ（8件）</div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-11-07</b> 11月山手緑地清掃活動のお知らせ<div class="full">■ 11月山手緑地清掃活動のお知らせ
+11月7日（土） 9:00-9:30
+軍手、お菓子、飲料等をご用意しています。
+皆さん、お気軽にご参加ください。</div></div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-10-28</b> 防犯パトロール実施のお知らせ<div class="full">■ 防犯パトロールは月に1回夜間に実施しています
+10月28日（水）
+19:30 山手町学校 東門に集合してください（雨天中止）</div></div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-10-17</b> 防犯パトロール隊 10月定例会議<div class="full">■ 防犯パトロール隊 10月定例会議
+10月17日（土） 14:00-15:00
+山手小学校 コミスク室にて
+防犯パトロール隊の取組みについてはこちらをご覧ください。</div></div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-10-22</b> テスト oct22 新年会案内<div class="full">2026-10-22 テスト oct22 新年会案内 - 管理者投稿テスト</div></div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-08-10</b> test test<div class="full">test test - 管理者テスト投稿</div></div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-06-06</b> 6月 山手線地清掃活動のお知らせ<div class="full">6月6日（金）午前9時より、山手線沿いの清掃活動を行います。</div></div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-05-23</b> 2026年度 定時総会を開催します<div class="full">2026年度定時総会を5月23日（土）14時より集会所で開催します。</div></div>
+<div class="news-item" onclick="toggleNotice(this)"><b>2026-05-20</b> 防犯パトロール実施のお知らせ<div class="full">防犯パトロールを5月20日より毎週火・金曜日の20時から実施します。</div></div>
+</div>
 </section>
 </div>
 <div id="square-view" class="page-view">
@@ -100,7 +118,28 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 <span class="tab" onclick="filterPosts('イベント',this)">イベント</span>
 <span class="tab" onclick="filterPosts('要望',this)">要望</span>
 </div>
-<div id="postsContainer">読込中...</div>
+<div id="postsContainer">
+<div class="post-card">
+  <div class="post-header"><span>環境美化委員会 / <span class="category-tag">季節の行事</span></span><span>2026-05-10 10:00</span></div>
+  <div style="margin-top:8px;white-space:pre-wrap;font-size:14px;line-height:1.8;">先日来の強風のために、落葉が多く、雑草も元気に出てきています。初めて清掃活動に参加された方も一緒に、五月晴れの緑地公園で楽しく清掃しました！</div>
+  <div style="margin-top:10px;"><img src="https://www.city.ashiya.lg.jp/kodomo/kodomohoiku/images/iwazonohoukatu01.jpg" referrerpolicy="no-referrer" style="width:100%;max-height:600px;object-fit:contain;border-radius:8px;background:#f5f5f5;display:block;" loading="lazy" onerror="this.src='https://placehold.co/800x450/eef0e4/2f5d34?text=清掃活動'"></div>
+</div>
+<div class="post-card">
+  <div class="post-header"><span>イベント班 / <span class="category-tag">食べる・集まる</span></span><span>2026-05-09 16:00</span></div>
+  <div style="margin-top:8px;white-space:pre-wrap;font-size:14px;line-height:1.8;">70個のお芋が全部きれいに無くなりました！春の一日、緑地清掃とイベントにご参加いただき、ありがとうございました。</div>
+  <div style="margin-top:10px;"><img src="https://placehold.co/800x600/FF8C00/FFFFFF?text=%E7%84%BC%E3%81%8D%E8%8A%8B%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88" referrerpolicy="no-referrer" style="width:100%;max-height:600px;object-fit:contain;border-radius:8px;background:#f5f5f5;display:block;"></div>
+</div>
+<div class="post-card">
+  <div class="post-header"><span>イベント班 / <span class="category-tag">子ども・親子で楽しむ</span></span><span>2026-05-08 09:00</span></div>
+  <div style="margin-top:8px;white-space:pre-wrap;font-size:14px;line-height:1.8;">圧巻は、西日本ではここ『須磨シ―ワールド』でしかみることのできない「オルカショー」。体重が3トンの“ステラ”と“ラン”の親子が巨体で見せてくれる数々の“芸”（パフォーマンス）は、巨大だけにその愛らしさ愛おしさが何十倍にも感じられました。帰路のお買い物も含めて、老若男女、笑顔のバスツアーでした！！</div>
+  <div style="margin-top:10px;"><img src="https://prtimes.jp/i/607/559/resize/d607-559-107882-0.jpg" referrerpolicy="no-referrer" style="width:100%;max-height:600px;object-fit:contain;border-radius:8px;background:#f5f5f5;display:block;" loading="lazy" onerror="this.src='https://placehold.co/800x450/eef0e4/2f5d34?text=バスツアー'"></div>
+</div>
+<div class="post-card">
+  <div class="post-header"><span>防犯委員 / <span class="category-tag">季節の行事</span></span><span>2026-05-07 14:00</span></div>
+  <div style="margin-top:8px;white-space:pre-wrap;font-size:14px;line-height:1.8;">防犯委員で、山手町町内会のオリジナルバッグを作成しました。山手町内の防犯、町の結束、不審者が近寄りにくい町づくり。そして子供達を守る！を目的に作成致しました。腕章を付けている人は山手町の人！安全な人だと子供達にもわかりやすくするため、キャラクターを作り、そのキャラクターを取り入れ子供達に認識してもらいやすいデザインにしました。画像を子供達に見せて「この腕章をつけてる人は町の人だよ〜」「困ったら声かけていいんだよ〜」とお伝えしてもらえると助かります♡</div>
+  <div style="margin-top:10px;"><img src="https://www.city.itako.lg.jp/data/img/2-1325645820_14.jpg" referrerpolicy="no-referrer" style="width:100%;max-height:600px;object-fit:contain;border-radius:8px;background:#f5f5f5;display:block;" loading="lazy" onerror="this.src='https://placehold.co/800x450/eef0e4/2f5d34?text=防犯バッグ'"></div>
+</div>
+</div>
 </div>
 <div id="admin-view" class="page-view">
 <h2 class="section-title">⚙ 管理者ページ - V90</h2>
@@ -127,7 +166,7 @@ input,textarea,select{width:100%;box-sizing:border-box;padding:8px;border:1px so
 </div>
 </div>
 </div>
-<footer>芦屋市山手町町内会 / V95</footer>
+<footer>芦屋市山手町町内会 / V96</footer>
 <script>
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbx-8mfIXVJlsGtvKtTR9XuVdkzm4VPILOz7IZ89cKOwpII0bx8js8DNPR7TIfD34C2-vg/exec';
 let allPosts=[]; let currentFilter='すべて'; let imageBase64='';
@@ -185,34 +224,38 @@ function renderNotices(notices){
 }
 async function loadFromGAS(){
   const statusEl=document.getElementById('status');
-  // まずデフォルトを即表示（必ず見えるように）
-  renderNotices(DEFAULT_NOTICES);
-  if(allPosts.length===0){
-    allPosts = DEFAULT_POSTS.map(d=>({...d}));
-    renderPosts();
-  }
+  if(statusEl) statusEl.textContent='V96 静的表示中 - GASをバックグラウンドで確認中...';
   try{
-    if(statusEl) statusEl.textContent='GASから読込中...';
-    const res=await fetch(GAS_URL+'?action=list&t='+Date.now());
-    const data=await res.json();
-    if(statusEl) statusEl.textContent=`V95 お知らせ:${data.notices?.length||0}件 広場:${data.data?.length||0}件 画像:${(data.data||[]).filter(d=>d.imageUrl).length}件 - 正常読込`;
+    const fetchPromise = fetch(GAS_URL+'?action=list&t='+Date.now()).then(r=>r.json());
+    const data = await Promise.race([fetchPromise, new Promise((_,rej)=>setTimeout(()=>rej(new Error('GASタイムアウト(10秒)')),10000))]);
+    if(statusEl) statusEl.textContent=`V96 GAS読込成功 お知らせ:${data.notices?.length||0}件 広場:${data.data?.length||0}件 画像:${(data.data||[]).filter(d=>d.imageUrl).length}件`;
     if(data.notices && data.notices.length>0){
-      const gasNotices = data.notices.map(n=>({date:n.date, title:(n.content||'').slice(0,40), content:n.content, short:n.short}));
+      const gasNotices = data.notices.map(n=>({date:n.date, title:(n.content||'').slice(0,40), content:n.content}));
+      // GASの方が新しい場合は静的を上書き
       renderNotices(gasNotices);
     }
     if(data.data && data.data.length>0){
-      allPosts = data.data.map(d=>({
+      // 過去4件 + GASの新しい投稿を合体
+      const gasPosts = data.data.map(d=>({
         timestamp:d.timestamp, author:d.author,
         summary:d.summary||(d.content||'').slice(0,100),
-        comment:d.content||d.comment||d.summary, 
+        comment:d.content||d.comment||d.summary,
         category:d.category||'その他',
         imageUrl:d.imageUrl||'', title:d.title||''
       }));
+      // 重複を除いて合体（タイムスタンプで）
+      const combined = [...gasPosts];
+      // 既存のINITIAL_HIROBAがGASに無ければ追加
+      INITIAL_HIROBA.forEach(old=>{
+        if(!combined.some(c=>c.timestamp===old.timestamp)){
+          combined.push({timestamp:old.timestamp, author:old.author, summary:old.summary, comment:old.description, category:old.category, imageUrl:old.imageUrl, title:old.summary.slice(0,30)});
+        }
+      });
+      allPosts = combined;
       renderPosts();
     }
   }catch(e){
-    if(statusEl) statusEl.textContent='GAS読込エラー（デフォルト表示中）:'+e.message+' - 再読込ボタンで再試行してください';
-    // エラーでもデフォルトは表示されたまま
+    if(statusEl) statusEl.textContent='V96 静的表示中（GAS読込失敗: '+e.message+' - このままでも見られます）';
   }
 }
 function renderPosts(){
@@ -330,12 +373,13 @@ async function testPing(){ const logEl=document.getElementById('testLog'); logEl
 async function testDrive(){ const logEl=document.getElementById('testLog'); logEl.style.display='block'; logEl.textContent='Drive接続テスト中...'; try{ const r=await fetch(GAS_URL+'?action=testDrive&t='+Date.now()); const j=await r.json(); logEl.textContent=JSON.stringify(j,null,2);}catch(e){logEl.textContent='エラー:'+e.message;}}
 async function loadNoticesAdmin(){ const el=document.getElementById('noticeListAdmin'); el.innerHTML='読込中...'; try{ const r=await fetch(GAS_URL+'?action=list&t='+Date.now()); const data=await r.json(); const notices=data.notices||[]; if(notices.length===0){el.innerHTML='表示中のお知らせなし';return;} el.innerHTML=notices.slice().reverse().map(n=>`<div class="news-item"><b>${esc(n.date)}</b> ${esc(n.content)}</div>`).join('');}catch(e){el.innerHTML='失敗:'+e.message;}}
 document.addEventListener("DOMContentLoaded",()=>{
-  // まず即座に表示（GAS待たずに見える）
-  renderNotices(DEFAULT_NOTICES);
-  allPosts = DEFAULT_POSTS.map(d=>({...d}));
-  renderPosts();
-  // その後GASから最新を取りに行く
-  loadFromGAS();
+  // 静的HTMLが既に入っているので、JSの初期データはバックアップとして保持
+  // allPostsが空ならINITIAL_HIROBAから復元
+  if(allPosts.length===0 && typeof INITIAL_HIROBA !== 'undefined'){
+    allPosts = INITIAL_HIROBA.map(p=>({timestamp:p.timestamp, author:p.author, summary:p.summary, comment:p.description, category:p.category, imageUrl:p.imageUrl, title:p.summary.slice(0,30)}));
+  }
+  // GASはバックグラウンドで確認（失敗しても静的表示は残る）
+  setTimeout(()=>loadFromGAS(),1000);
   const imgEl=document.getElementById('postImage');
   if(imgEl){
     imgEl.addEventListener('change', e=>{
